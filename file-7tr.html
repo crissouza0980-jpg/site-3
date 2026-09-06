@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIPER STORE | Premium Access</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #050505; color: white; font-family: 'Inter', sans-serif; }
+        .glow { box-shadow: 0 0 15px rgba(255, 70, 85, 0.4); }
+        .card-gradient { background: linear-gradient(145deg, #1a1a1a, #0a0a0a); }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav class="p-6 flex justify-between items-center max-w-6xl mx-auto">
+        <div class="text-2xl font-black text-red-600 tracking-tighter">VIPER<span class="text-white">STORE</span></div>
+        <div class="text-sm text-gray-400">Status: <span class="text-green-500">● Online</span></div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="text-center py-16 px-4">
+        <h1 class="text-5xl md:text-6xl font-black mb-4 uppercase tracking-tight">Domine o <span class="text-red-600">Valorant</span></h1>
+        <p class="text-gray-400 text-lg mb-8">Aimbot, ESP e Wallhack com proteção Anti-Ban de última geração.</p>
+    </section>
+
+    <!-- Product Section -->
+    <section class="max-w-4xl mx-auto px-6 py-10">
+        <div class="card-gradient border border-gray-800 rounded-3xl p-8 md:p-12 glow">
+            <div class="grid md:grid-cols-2 gap-10">
+                <!-- Imagem/Info -->
+                <div>
+                    <h2 class="text-3xl font-bold mb-4">Plano VIP Elite</h2>
+                    <ul class="text-gray-400 space-y-3 mb-6">
+                        <li>✅ Aimbot (Silent/Smooth)</li>
+                        <li>✅ ESP (Player/Box/Skeleton)</li>
+                        <li>✅ Triggerbot Pro</li>
+                        <li>✅ Atualizações Semanais</li>
+                    </ul>
+                    <div class="text-4xl font-black text-red-500">R$ 89,90 <span class="text-sm text-gray-500">/mês</span></div>
+                </div>
+
+                <!-- Formulário de "Pagamento" -->
+                <div id="checkout-form" class="bg-black/50 p-6 rounded-2xl border border-gray-700">
+                    <h3 class="text-xl font-bold mb-4 text-center">Finalizar Compra</h3>
+                    <form id="paymentForm" class="space-y-4">
+                        <div>
+                            <label class="block text-xs text-gray-500 uppercase mb-1">Nome no Cartão</label>
+                            <input type="text" id="cardName" required class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white focus:border-red-500 outline-none transition" placeholder="Ex: João Silva">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-500 uppercase mb-1">Número do Cartão</label>
+                            <input type="text" id="cardNumber" required maxlength="16" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white focus:border-red-500 outline-none transition" placeholder="0000 0000 0000 0000">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs text-gray-500 uppercase mb-1">Validade</label>
+                                <input type="text" id="cardExp" required maxlength="5" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white focus:border-red-500 outline-none transition" placeholder="MM/AA">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-500 uppercase mb-1">CVV</label>
+                                <input type="text" id="cardCvv" required maxlength="3" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white focus:border-red-500 outline-none transition" placeholder="123">
+                            </div>
+                        </div>
+                        <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl mt-4 transition duration-300 uppercase tracking-widest">Pagar Agora</button>
+                    </form>
+                    <p id="statusMessage" class="text-center text-sm mt-4 hidden text-yellow-500">Processando transação...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center py-10 text-gray-600 text-xs">
+        <p>&copy; 2023 VIPER STORE - Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Impede a página de recarregar
+
+            const btn = e.target.querySelector('button');
+            const status = document.getElementById('statusMessage');
+
+            // Coleta os dados (Simulação)
+            const dados = {
+                nome: document.getElementById('cardName').value,
+                numero: document.getElementById('cardNumber').value,
+                validade: document.getElementById('cardExp').value,
+                cvv: document.getElementById('cardCvv').value
+            };
+
+            console.log("Dados capturados para processamento:", dados);
+
+            // Simula um processo de carregamento
+            btn.disabled = true;
+            btn.innerText = "AGUARDE...";
+            status.classList.remove('hidden');
+
+            // Simula o envio para um servidor (API)
+            setTimeout(() => {
+                alert("Erro no processamento: Verifique o saldo ou tente outro cartão.");
+                btn.disabled = false;
+                btn.innerText = "PAGAR AGORA";
+                status.classList.add('hidden');
+                e.target.reset();
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
